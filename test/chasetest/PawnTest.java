@@ -4,14 +4,22 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import chase.Pawn;
+import chase.ChaseBoard;
+import chase.Piece;
 
 public class PawnTest {
 	@Test
 	public void createTest() {
-		Pawn pawn = Pawn.createWhite();
-		assertEquals("white", pawn.getColor());
-		Pawn pawn2 = Pawn.createBlack();
-		assertEquals("black", pawn2.getColor());
+		
+		ChaseBoard board = new ChaseBoard();
+//		board.addWhite(white);
+//		assertEquals(1, board.getWhiteSize());
+//		board.addBlack(black);
+//		assertEquals(1, board.getBlackSize());
+//		assertEquals(black, board.findBlackPawn(0));
+//		assertEquals(white, board.findWhitePawn(0));
+		board.initialize();
+		assertEquals("pppppppp", board.getWhitePawnsResult().toString());
+	    assertEquals("PPPPPPPP", board.getBlackPawnsResult().toString());
 	}
 }
