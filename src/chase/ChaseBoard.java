@@ -9,102 +9,64 @@ import util.StringUtils;
 public class ChaseBoard {
 	public static final String NEWLINE = System.getProperty("line.separator");
 	public static final String BLANK = "........";
-	private List<Piece> whitePawnList;
-	private List<Piece> whitePieceList;
-	private List<Piece> blackPawnList;
-	private List<Piece> blackPieceList;
+	private List<Rank> chaseBoard;
+	
 	public ChaseBoard() {
-		whitePawnList = new ArrayList<Piece>();
-		whitePieceList = new ArrayList<Piece>();
-		blackPieceList = new ArrayList<Piece>();
-		blackPawnList = new ArrayList<Piece>();
+		chaseBoard=  new ArrayList<Rank>();
 	}
-	public void addWhite(Piece pawn) {
-		whitePawnList.add(pawn);
-	}
-	public void addBlack(Piece pawn) {
-		blackPawnList.add(pawn);
-	}
-	public int getWhiteSize() {
-		return whitePawnList.size();
-	}
-	public int getBlackSize() {
-		return blackPawnList.size();
-	}
-	public Piece findWhitePawn(int index) {
-		return whitePawnList.get(index);
-	}
-	public Piece findBlackPawn(int index) {
-		return blackPawnList.get(index);
-	}
-	public StringBuilder getWhitePawnsResult() {
-		StringBuilder st = new StringBuilder();
-		for(int i=0; i<whitePawnList.size(); i++) {
-			if(whitePawnList.get(i).getColor() == Color.WHITE)
-				st.append('p');
-		}
-		return st;
-	}
-	public StringBuilder getBlackPawnsResult() {
-		StringBuilder st = new StringBuilder();
-		for(int i=0; i<blackPawnList.size(); i++) {
-			if(blackPawnList.get(i).getColor() == Color.BLACK)
-				st.append('P');
-		}
-		return st;
-	}
+	
 	public void initialize() {
+		List<Piece> list;
+		list = new ArrayList<Piece>();
 		for(int i=0; i<8; i++) {
-			blackPawnList.add(Piece.createBlackPawn());
-			whitePawnList.add(Piece.createWhitePawn());
+			list.add(Piece.createBlackPawn());
 		}
-		blackPieceList.add(Piece.createBlackRook());
-		blackPieceList.add(Piece.createBlackKnight());
-		blackPieceList.add(Piece.createBlackBishop());
-		blackPieceList.add(Piece.createBlackQueen());
-		blackPieceList.add(Piece.createBlackKing());
-		blackPieceList.add(Piece.createBlackBishop());
-		blackPieceList.add(Piece.createBlackKnight());
-		blackPieceList.add(Piece.createBlackRook());
-		
-		whitePieceList.add(Piece.createWhiteRook());
-		whitePieceList.add(Piece.createWhiteKnight());
-		whitePieceList.add(Piece.createWhiteBishop());
-		whitePieceList.add(Piece.createWhiteQueen());
-		whitePieceList.add(Piece.createWhiteKing());
-		whitePieceList.add(Piece.createWhiteBishop());
-		whitePieceList.add(Piece.createWhiteKnight());
-		whitePieceList.add(Piece.createWhiteRook());
+		chaseBoard.add(new Rank(list));
+		list = new ArrayList<Piece>();
+		list.add(Piece.createBlackRook());
+		list.add(Piece.createBlackKnight());
+		list.add(Piece.createBlackBishop());
+		list.add(Piece.createBlackQueen());
+		list.add(Piece.createBlackKing());
+		list.add(Piece.createBlackBishop());
+		list.add(Piece.createBlackKnight());
+		list.add(Piece.createBlackRook());
+		chaseBoard.add(new Rank(list));
+		for(int i=0; i<4; i++) {
+			list = new ArrayList<Piece>();
+			for(int j=0; j<8; j++) {
+				list.add(Piece.createBlank());
+			}
+			chaseBoard.add(new Rank(list));
+		}
+		list = new ArrayList<Piece>();
+		for(int i=0; i<8; i++) {
+			list.add(Piece.createBlackPawn());
+		}
+		chaseBoard.add(new Rank(list));
+		list = new ArrayList<Piece>();
+		list.add(Piece.createWhiteRook());
+		list.add(Piece.createWhiteKnight());
+		list.add(Piece.createWhiteBishop());
+		list.add(Piece.createWhiteQueen());
+		list.add(Piece.createWhiteKing());
+		list.add(Piece.createWhiteBishop());
+		list.add(Piece.createWhiteKnight());
+		list.add(Piece.createWhiteRook());
+		chaseBoard.add(new Rank(list));
 	}
 	public String showBoard() {
 		StringBuilder st = new StringBuilder();
-		for(int i=0; i<blackPieceList.size(); i++) {
-			st.append(blackPieceList.get(i).getType().getBlackRepresentation());
+		for(int i=0; i<chaseBoard.size(); i++) {
+			for(int j=0; j<chaseBoard.get(i).getRankSize(); j++) {
+				st.append(chaseBoard.get(i).findSinglePiece(j).getType().getBlackRepresentation());
+			}
+			st.append(StringUtils.NEWLINE);
 		}
-		st.append(StringUtils.NEWLINE);
-		for(int i=0; i<blackPawnList.size(); i++) {
-			st.append(blackPawnList.get(i).getType().getWhiteRepresentation());
-		}
-		st.append(StringUtils.NEWLINE);
-		st.append(BLANK);
-		st.append(StringUtils.NEWLINE);
-		st.append(BLANK);
-		st.append(StringUtils.NEWLINE);
-		st.append(BLANK);
-		st.append(StringUtils.NEWLINE);
-		st.append(BLANK);
-		st.append(StringUtils.NEWLINE);
-		for(int i=0; i<whitePawnList.size(); i++) {
-			st.append(whitePawnList.get(i).getType().getWhiteRepresentation());
-		}
-		st.append(StringUtils.NEWLINE);
-		for(int i=0; i<whitePieceList.size(); i++) {
-			st.append(whitePieceList.get(i).getType().getBlackRepresentation());
-		}
-		st.append(StringUtils.NEWLINE);
+		
 		return st.toString();
 	}
 	public int pieceCount() {
-		return whitePieceList.size() + blackPieceList.size() + whitePawnList.size() + whitePieceList.size();
+		return chaseBoard.size() * 8;
 	}
 }
