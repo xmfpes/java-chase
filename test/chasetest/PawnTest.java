@@ -21,6 +21,6 @@ public class PawnTest {
 		board.initialize();
 		assertEquals("pppppppp", board.getWhitePawnsResult().toString());
 	    assertEquals("PPPPPPPP", board.getBlackPawnsResult().toString());
-	    Piece piece = Piece.createBlackBishop();
+	    
 	}
 }
