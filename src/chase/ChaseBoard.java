@@ -3,6 +3,7 @@ package chase;
 import java.util.ArrayList;
 import java.util.List;
 
+import chase.Piece.Color;
 import util.StringUtils;
 
 public class ChaseBoard {
@@ -39,7 +40,7 @@ public class ChaseBoard {
 	public StringBuilder getWhitePawnsResult() {
 		StringBuilder st = new StringBuilder();
 		for(int i=0; i<whitePawnList.size(); i++) {
-			if(whitePawnList.get(i).getColor() == "white")
+			if(whitePawnList.get(i).getColor() == Color.WHITE)
 				st.append('p');
 		}
 		return st;
@@ -47,7 +48,7 @@ public class ChaseBoard {
 	public StringBuilder getBlackPawnsResult() {
 		StringBuilder st = new StringBuilder();
 		for(int i=0; i<blackPawnList.size(); i++) {
-			if(blackPawnList.get(i).getColor() == "black")
+			if(blackPawnList.get(i).getColor() == Color.BLACK)
 				st.append('P');
 		}
 		return st;
@@ -78,11 +79,11 @@ public class ChaseBoard {
 	public String showBoard() {
 		StringBuilder st = new StringBuilder();
 		for(int i=0; i<blackPieceList.size(); i++) {
-			st.append(blackPieceList.get(i).getPiece());
+			st.append(blackPieceList.get(i).getType().getBlackRepresentation());
 		}
 		st.append(StringUtils.NEWLINE);
 		for(int i=0; i<blackPawnList.size(); i++) {
-			st.append(blackPawnList.get(i).getPiece());
+			st.append(blackPawnList.get(i).getType().getWhiteRepresentation());
 		}
 		st.append(StringUtils.NEWLINE);
 		st.append(BLANK);
@@ -94,11 +95,11 @@ public class ChaseBoard {
 		st.append(BLANK);
 		st.append(StringUtils.NEWLINE);
 		for(int i=0; i<whitePawnList.size(); i++) {
-			st.append(whitePawnList.get(i).getPiece());
+			st.append(whitePawnList.get(i).getType().getWhiteRepresentation());
 		}
 		st.append(StringUtils.NEWLINE);
 		for(int i=0; i<whitePieceList.size(); i++) {
-			st.append(whitePieceList.get(i).getPiece());
+			st.append(whitePieceList.get(i).getType().getBlackRepresentation());
 		}
 		st.append(StringUtils.NEWLINE);
 		return st.toString();
