@@ -15,6 +15,15 @@ public class Piece {
 		this.piece = piece;
 		this.color = color;
 	}
+	
+	public String getPiece() {
+		return piece;
+	}
+
+	public void setPiece(String piece) {
+		this.piece = piece;
+	}
+
 	public static Piece createBlackPawn() {
 		return new Piece("P", "black");
 	}
@@ -25,7 +34,7 @@ public class Piece {
 		return new Piece("R", "black");
 	}
 	public static Piece createWhiteRook() {
-		return new Piece("R", "white");
+		return new Piece("r", "white");
 	}
 	public static Piece createBlackKnight() {
 		return new Piece("N", "black");
