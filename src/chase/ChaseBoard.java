@@ -31,10 +31,7 @@ public class ChaseBoard {
 	public void initializeEmpty() {
 		List<Piece> blankList = new ArrayList<Piece>();
 		for(int i=0; i<8; i++) {
-			for(int j=0; j<8; j++) {
-				blankList.add(Piece.createBlank());
-			}
-			chaseBoard.add(new Rank(blankList));
+			chaseBoard.add(Rank.createBlankRank());
 		}
 	}
 	
@@ -66,6 +63,12 @@ public class ChaseBoard {
 		int row = Character.getNumericValue(position.charAt(1)) - 1;
 	
 		return chaseBoard.get(row).findPiece(col);
+	}
+	
+	public void move(String position, Piece piece) {
+		int col = position.charAt(0) - 'a';
+		int row = Character.getNumericValue(position.charAt(1)) - 1;
+		chaseBoard.get(row).setPiece(col, piece);
 	}
 	
 }
