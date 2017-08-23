@@ -12,7 +12,24 @@ public class Rank {
 	public Rank(List<Piece> rank) {
 		this.rank = rank;
 	}
-	public Piece findSinglePiece(int index) {
+	
+	public Piece findPiece(int index) {
+		return rank.get(index);
+	}
+	
+	public void setPiece(int index, Piece piece) {
+		rank.set(index, piece);
+	}
+	public int findPieceCountInRank(Piece.Color color, Piece.Type type) {
+		int pieceCount = 0;
+		for(int i=0; i<rank.size(); i++) {
+			if(getIndexPiece(i).getColor() == color && getIndexPiece(i).getType() == type)
+				pieceCount++;
+		}
+		return pieceCount;
+	}
+	
+	public Piece getIndexPiece(int index) {
 		return rank.get(index);
 	}
 	public int getRankSize() {
@@ -62,7 +79,7 @@ public class Rank {
 	public static Rank createWhitePawnRank(){
 		List<Piece> whitePawnList = new ArrayList<Piece>();
 		for(int i=0; i<8; i++)
-			whitePawnList.add(Piece.createBlackPawn());
+			whitePawnList.add(Piece.createWhitePawn());
 		return new Rank(whitePawnList);
 	}
 }

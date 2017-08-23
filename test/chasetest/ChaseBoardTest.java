@@ -6,6 +6,7 @@ import static util.StringUtils.appendNewLine;
 import org.junit.Test;
 
 import chase.ChaseBoard;
+import chase.Piece;
 
 public class ChaseBoardTest {
 	final String blankRank = appendNewLine("........");
@@ -21,6 +22,18 @@ public class ChaseBoardTest {
 	            appendNewLine("pppppppp") +
 	            appendNewLine("rnbqkbnr"),
 	            board.showBoard());   
-		assertEquals(32, board.pieceCount());
+	}
+	@Test
+	public void getPieceCountTest() {
+		ChaseBoard board = new ChaseBoard();
+		board.initialize();
+		assertEquals(1, board.getPieceCount(Piece.Color.WHITE, Piece.Type.KING));
+		assertEquals(2, board.getPieceCount(Piece.Color.WHITE, Piece.Type.ROOK));
+		assertEquals(8, board.getPieceCount(Piece.Color.BLACK, Piece.Type.PAWN));
+		
+		assertEquals(Piece.createBlackRook(), board.findPiece("a8"));
+        assertEquals(Piece.createBlackRook(), board.findPiece("h8"));
+        assertEquals(Piece.createWhiteRook(), board.findPiece("a1"));
+        assertEquals(Piece.createWhiteRook(), board.findPiece("h1"));
 	}
 }

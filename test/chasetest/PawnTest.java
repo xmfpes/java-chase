@@ -23,7 +23,7 @@ public class PawnTest {
 //		assertEquals("pppppppp", board.getWhitePawnsResult().toString());
 //	    assertEquals("PPPPPPPP", board.getBlackPawnsResult().toString());
 	    board.initialize();
-        assertEquals(32, board.pieceCount());
+        assertEquals(32, board.getAllPieceCount());
        
          
 	}
