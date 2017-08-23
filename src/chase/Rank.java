@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import chase.Piece.Color;
+
 public class Rank {
 	private List<Piece> rank;
 	public Rank() {
@@ -81,5 +83,14 @@ public class Rank {
 		for(int i=0; i<8; i++)
 			whitePawnList.add(Piece.createWhitePawn());
 		return new Rank(whitePawnList);
+	}
+	
+	public double getRankPoint(Piece.Color color) {
+		double point = 0;
+		for(int i=0; i<rank.size(); i++) {
+			if(rank.get(i).getColor() == color)
+				point += rank.get(i).getType().getDefaultPoint();
+		}
+		return point;
 	}
 }

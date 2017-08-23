@@ -71,4 +71,12 @@ public class ChaseBoard {
 		chaseBoard.get(row).setPiece(col, piece);
 	}
 	
+	public double caculcatePoint(Piece.Color color) {
+		double pointSum = 0;
+		for(int i=0; i<chaseBoard.size(); i++) {
+			pointSum += chaseBoard.get(i).getRankPoint(color);
+		}
+		System.out.println(pointSum);
+		return pointSum;
+	}
 }
