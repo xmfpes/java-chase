@@ -3,6 +3,7 @@ package chase;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,9 +14,12 @@ public class ChaseBoard {
 	public static final String NEWLINE = System.getProperty("line.separator");
 	public static final String BLANK = "........";
 	private List<Rank> chaseBoard;
+	private PawnCheck pawnCheckList;
+	
 	
 	public ChaseBoard() {
-		chaseBoard=  new ArrayList<Rank>();
+		chaseBoard = new ArrayList<Rank>();
+		pawnCheckList = new PawnCheck();
 	}
 	
 	public void initialize() {
@@ -75,8 +79,21 @@ public class ChaseBoard {
 		double pointSum = 0;
 		for(int i=0; i<chaseBoard.size(); i++) {
 			pointSum += chaseBoard.get(i).getRankPoint(color);
+			pawnCheckList.updateCheckList(color, chaseBoard.get(i).getPawnCheckList(color));
 		}
-		System.out.println(pointSum);
+		
+		pointSum -= calculatePawnExceptionPoint(color);
+		pawnCheckList.show();
 		return pointSum;
+	}
+	
+	public double calculatePawnExceptionPoint(Piece.Color color) {
+		double minusPoint = 0.0;
+		for(int i=0; i<8; i++) {
+			int count = pawnCheckList.getPawnCheckList(i, color);
+			if(count >= 2)
+				minusPoint += (double)count/2.0;
+		}
+		return minusPoint;
 	}
 }

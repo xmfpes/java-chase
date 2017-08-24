@@ -8,8 +8,10 @@ import chase.Piece.Color;
 
 public class Rank {
 	private List<Piece> rank;
+	private List<Integer> checkPawn;
 	public Rank() {
 		rank = new ArrayList<Piece>();
+		checkPawn = new ArrayList<Integer>();
 	}
 	public Rank(List<Piece> rank) {
 		this.rank = rank;
@@ -88,9 +90,21 @@ public class Rank {
 	public double getRankPoint(Piece.Color color) {
 		double point = 0;
 		for(int i=0; i<rank.size(); i++) {
-			if(rank.get(i).getColor() == color)
+			if(rank.get(i).getColor() == color) {
 				point += rank.get(i).getType().getDefaultPoint();
+			}
 		}
 		return point;
 	}
+	
+	public int [] getPawnCheckList(Piece.Color color) {
+		int [] check = new int[8];
+		for(int i=0; i<rank.size(); i++) {
+			if(rank.get(i).getType() == Piece.Type.PAWN && rank.get(i).getColor() == color) {
+				check[i] += 1;
+			}
+		}
+		return check;
+	}
+	
 }
