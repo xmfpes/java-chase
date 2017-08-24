@@ -99,7 +99,19 @@ public class ChaseBoardTest {
 		assertEquals(20.0, board.caculcatePoint(Piece.Color.BLACK), 0.01);
 		assertEquals(19.5, board.caculcatePoint(Piece.Color.WHITE), 0.01);
 	}
+	
 	private void addPiece(String position, Piece piece) {
 		board.move(position, piece);
 	}
+	
+	 @Test
+	    public void moveTest() throws Exception {
+	        board.initialize();
+
+	        String sourcePosition = "b2";
+	        String targetPosition = "b3";
+	        board.move(sourcePosition, targetPosition);
+	        assertEquals(Piece.createBlank(), board.findPiece(sourcePosition));
+	        assertEquals(Piece.createWhitePawn(), board.findPiece(targetPosition));
+	    }
 }

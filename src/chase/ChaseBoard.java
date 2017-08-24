@@ -70,9 +70,16 @@ public class ChaseBoard {
 	}
 	
 	public void move(String position, Piece piece) {
-		int col = position.charAt(0) - 'a';
-		int row = Character.getNumericValue(position.charAt(1)) - 1;
-		chaseBoard.get(row).setPiece(col, piece);
+		Position parsedPosition = new Position(position);
+		chaseBoard.get(parsedPosition.getRow()).setPiece(parsedPosition.getCol(), piece);
+	}
+	
+	public void move(String beforeposition, String afterPosition) {
+		Position parsedBeforePosition = new Position(beforeposition);
+		Piece piece = chaseBoard.get(parsedBeforePosition.getRow()).findPiece(parsedBeforePosition.getCol());
+		
+		move(afterPosition, piece);
+		move(beforeposition, Piece.createBlank());
 	}
 	
 	public double caculcatePoint(Piece.Color color) {
@@ -81,9 +88,7 @@ public class ChaseBoard {
 			pointSum += chaseBoard.get(i).getRankPoint(color);
 			pawnCheckList.updateCheckList(color, chaseBoard.get(i).getPawnCheckList(color));
 		}
-		
 		pointSum -= calculatePawnExceptionPoint(color);
-		pawnCheckList.show();
 		return pointSum;
 	}
 	

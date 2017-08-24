@@ -34,15 +34,4 @@ public class PawnCheck {
 			return checkBlackPawn[index];
 		return checkWhitePawn[index];
 	}
-	
-	public void show() {
-		for(int i=0; i<8; i++) {
-			System.out.print(" black : "  + checkBlackPawn[i] + " ");
-		}
-		System.out.println();
-		for(int i=0; i<8; i++) {
-			System.out.print(" white : "  + checkWhitePawn[i] + " ");
-		}
-		System.out.println();
-	}
 }
