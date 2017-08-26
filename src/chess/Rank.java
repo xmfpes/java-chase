@@ -1,10 +1,18 @@
-package chase;
+package chess;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import chase.Piece.Color;
+import piece.Bishop;
+import piece.Blank;
+import piece.King;
+import piece.Knight;
+import piece.Pawn;
+import piece.Piece;
+import piece.Queen;
+import piece.Rook;
+import piece.Piece.Color;
 
 public class Rank {
 	private List<Piece> rank;
@@ -42,48 +50,54 @@ public class Rank {
 	
 	public static Rank createBlackPieceRank(){
 		List<Piece> blackPieceList = new ArrayList<Piece>();
-		blackPieceList.add(Piece.createBlackRook());
-		blackPieceList.add(Piece.createBlackKnight());
-		blackPieceList.add(Piece.createBlackBishop());
-		blackPieceList.add(Piece.createBlackQueen());
-		blackPieceList.add(Piece.createBlackKing());
-		blackPieceList.add(Piece.createBlackBishop());
-		blackPieceList.add(Piece.createBlackKnight());
-		blackPieceList.add(Piece.createBlackRook());
+		blackPieceList.add(Rook.createBlack(new Position("a8")));
+		blackPieceList.add(Knight.createBlack(new Position("b8")));
+		blackPieceList.add(Bishop.createBlack(new Position("c8")));
+		blackPieceList.add(Queen.createBlack(new Position("d8")));
+		blackPieceList.add(King.createBlack(new Position("e8")));
+		blackPieceList.add(Bishop.createBlack(new Position("f8")));
+		blackPieceList.add(Knight.createBlack(new Position("g8")));
+		blackPieceList.add(Rook.createBlack(new Position("h8")));
 		return new Rank(blackPieceList);
 	}
 	
 	public static Rank createBlackPawnRank(){
 		List<Piece> blackPawnList = new ArrayList<Piece>();
-		for(int i=0; i<8; i++)
-			blackPawnList.add(Piece.createBlackPawn());
+		for(int i=0; i<8; i++) {
+			char temp = (char) ('a' + i);
+			blackPawnList.add(Pawn.createBlack(new Position(temp + "7")));
+		}
 		return new Rank(blackPawnList);
 	}
 	
-	public static Rank createBlankRank() {
+	public static Rank createBlankRank(String row) {
 		List<Piece> blankList = new ArrayList<Piece>();
-		for(int i=0; i<8; i++)
-			blankList.add(Piece.createBlank());
+		for(int i=0; i<8; i++) {
+			char temp = (char) ('a' + i);
+			blankList.add(Blank.create(new Position(temp + row)));
+		}
 		return new Rank(blankList);
 	}
 	
 	public static Rank createWhitePieceRank() {
 		List<Piece> whitePieceList = new ArrayList<Piece>();
-		whitePieceList.add(Piece.createWhiteRook());
-		whitePieceList.add(Piece.createWhiteKnight());
-		whitePieceList.add(Piece.createWhiteBishop());
-		whitePieceList.add(Piece.createWhiteQueen());
-		whitePieceList.add(Piece.createWhiteKing());
-		whitePieceList.add(Piece.createWhiteBishop());
-		whitePieceList.add(Piece.createWhiteKnight());
-		whitePieceList.add(Piece.createWhiteRook());
+		whitePieceList.add(Rook.createWhite(new Position("a1")));
+		whitePieceList.add(Knight.createWhite(new Position("b1")));
+		whitePieceList.add(Bishop.createWhite(new Position("c1")));
+		whitePieceList.add(Queen.createWhite(new Position("d1")));
+		whitePieceList.add(King.createWhite(new Position("e1")));
+		whitePieceList.add(Bishop.createWhite(new Position("f1")));
+		whitePieceList.add(Knight.createWhite(new Position("g1")));
+		whitePieceList.add(Rook.createWhite(new Position("h1")));
 		return new Rank(whitePieceList);
 	}
 	
 	public static Rank createWhitePawnRank(){
 		List<Piece> whitePawnList = new ArrayList<Piece>();
-		for(int i=0; i<8; i++)
-			whitePawnList.add(Piece.createWhitePawn());
+		for(int i=0; i<8; i++) {
+			char temp = (char) ('a' + i);
+			whitePawnList.add(Pawn.createWhite(new Position(temp + "2")));
+		}
 		return new Rank(whitePawnList);
 	}
 	

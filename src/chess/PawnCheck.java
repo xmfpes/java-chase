@@ -1,4 +1,6 @@
-package chase;
+package chess;
+
+import piece.Piece;
 
 public class PawnCheck {
 	private	int [] checkBlackPawn;

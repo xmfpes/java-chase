@@ -1,9 +1,16 @@
-package chase;
+package piece;
+
+import java.util.List;
+
+import chess.Position;
 
 public class Piece {
 	private Color color;
 	private Type type;
-
+	private Position position;
+	private List<Position> possibilityPosition;
+	private List<Direction> moveDirection;
+	
 	public enum Color {
 		WHITE('w'), BLACK('b'), NOCOLOR('b');
 		private char color;
@@ -58,6 +65,23 @@ public class Piece {
 		return this.type.getBlackRepresentation();
 	}
 	
+	public void move(Piece target) {
+       //verifyMovePosition(target);
+        this.position = target.position;
+    }
+    
+    protected boolean isSameTeam(Piece target) {
+        if (isWhite() && target.isWhite()) {
+            return true;
+        }
+        
+        if (isBlack() && target.isBlack()) {
+            return true;
+        }
+        
+        return false;
+    }
+    
 	public Color getColor() {
 		return color;
 	}
@@ -73,68 +97,30 @@ public class Piece {
 	public void setType(Type type) {
 		this.type = type;
 	}
-
-	public Piece(Color color, Type type) {
+	
+	public void calculatePossibilityPosition() {
+		
+	}
+	public Piece(Color color, Type type, Position position) {
 		this.color = color;
 		this.type = type;
+		this.position = position;
 	}
-	private static Piece createWhite(Type type) {
-		return new Piece(Color.WHITE, type);
-	}
-	private static Piece createBlack(Type type) {
-		return new Piece(Color.BLACK, type);
-	}
-	public static Piece createBlank() {
-		return new Piece(Color.NOCOLOR, Type.NO_PIECE);
-	}
-	public static Piece createBlackPawn() {
-		return createBlack(Type.PAWN);
+	
+	protected Piece(Color color, Type type, Position position, List<Direction> directions) {
+        this.color = color;
+        this.type = type;
+        this.position = position;
+        this.moveDirection = directions;
+    }
+
+	public Position getPosition() {
+		return position;
 	}
 
-	public static Piece createWhitePawn() {
-		return createWhite(Type.PAWN);
+	public void setPosition(Position position) {
+		this.position = position;
 	}
-
-	public static Piece createBlackRook() {
-		return createBlack(Type.ROOK);
-	}
-
-	public static Piece createWhiteRook() {
-		return createWhite(Type.ROOK);
-	}
-
-	public static Piece createBlackKnight() {
-		return createBlack(Type.KNIGHT);
-	}
-
-	public static Piece createWhiteKnight() {
-		return createWhite(Type.KNIGHT);
-	}
-
-	public static Piece createBlackBishop() {
-		return createBlack(Type.BISHOP);
-	}
-
-	public static Piece createWhiteBishop() {
-		return createWhite(Type.BISHOP);
-	}
-
-	public static Piece createBlackQueen() {
-		return createBlack(Type.QUEEN);
-	}
-
-	public static Piece createWhiteQueen() {
-		return createWhite(Type.QUEEN);
-	}
-
-	public static Piece createBlackKing() {
-		return createBlack(Type.KING);
-	}
-
-	public static Piece createWhiteKing() {
-		return createWhite(Type.KING);
-	}
-
 
 	public boolean isBlack() {
 		return this.color.equals(Color.BLACK);

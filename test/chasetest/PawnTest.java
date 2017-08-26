@@ -3,16 +3,18 @@ package chasetest;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import chess.ChessBoard;
+import piece.Piece;
+
 import static util.StringUtils.appendNewLine;
-import chase.ChaseBoard;
-import chase.Piece;
 
 public class PawnTest {
 	final String blankRank = appendNewLine("........");
 	@Test
 	public void createTest() {
 		
-		ChaseBoard board = new ChaseBoard();
+		ChessBoard board = new ChessBoard();
 //		board.addWhite(white);
 //		assertEquals(1, board.getWhiteSize());
 //		board.addBlack(black);
