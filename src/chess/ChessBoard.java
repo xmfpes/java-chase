@@ -73,7 +73,7 @@ public class ChessBoard {
 	}
 	
 	Piece findPiece(Position p) {
-        return findRank(p.getRow()).getIndexPiece(p.getCol());
+        return findRank(p.getY()).getIndexPiece(p.getX());
     }
 	
 	public Rank findRank(int row) {
@@ -82,7 +82,7 @@ public class ChessBoard {
 	
 	public void updateRank(Piece piece) {
 		Position position = piece.getPosition();
-		findRank(position.getRow()).setPiece(position.getCol(), piece);
+		findRank(position.getY()).setPiece(position.getX(), piece);
 	}
 	
 	public void move(String position, Piece piece) {

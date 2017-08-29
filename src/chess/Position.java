@@ -3,33 +3,33 @@ package chess;
 import piece.Direction;
 
 public class Position {
-	private int row;
-	private int col;
+	private int x;
+	private int y;
 	
 	public Position(int x, int y) {
-		this.col = x;
-		this.row = y;
+		this.x = x;
+		this.y = y;
 	}
 	
 	public Position(String position) {
-		this.col = position.charAt(0) - 'a';
-		this.row = Character.getNumericValue(position.charAt(1)) - 1;
+		this.x = position.charAt(0) - 'a';
+		this.y = Character.getNumericValue(position.charAt(1)) - 1;
 	}
 
-	public int getRow() {
-		return row;
+	public int getX() {
+		return x;
 	}
 
-	public void setRow(int row) {
-		this.row = row;
+	public void setX(int x) {
+		this.x = x;
 	}
 
-	public int getCol() {
-		return col;
+	public int getY() {
+		return y;
 	}
 
-	public void setCol(int col) {
-		this.col = col;
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public Direction direction(Position position) {

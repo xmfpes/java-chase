@@ -63,8 +63,8 @@ public class ChaseBoardTest {
 		
 		System.out.println(board.showBoard());
 		
-		assertEquals(7, piece.getPosition().getRow());
-		assertEquals(1, piece.getPosition().getCol());
+		assertEquals(7, piece.getPosition().getY());
+		assertEquals(1, piece.getPosition().getX());
 	}
 
 	@Test
