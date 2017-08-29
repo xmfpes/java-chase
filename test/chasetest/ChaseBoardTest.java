@@ -8,9 +8,12 @@ import org.junit.Test;
 
 import chess.ChessBoard;
 import chess.Position;
+import piece.Bishop;
 import piece.King;
+import piece.Pawn;
 import piece.Piece;
 import piece.Queen;
+import piece.Rook;
 
 public class ChaseBoardTest {
 	ChessBoard board = new ChessBoard();
@@ -70,22 +73,35 @@ public class ChaseBoardTest {
 	@Test
 	public void caculcatePoint() throws Exception {
 
-//		board.initializeEmpty();
-//
-//		addPiece("b6", Piece.createBlackPawn());
-//		addPiece("e6", Piece.createBlackQueen());
-//		addPiece("b8", Piece.createBlackKing());
-//		addPiece("c8", Piece.createBlackRook());
-//
-//		addPiece("f2", Piece.createWhitePawn());
-//		addPiece("g2", Piece.createWhitePawn());
-//		addPiece("e1", Piece.createWhiteRook());
-//		addPiece("f1", Piece.createWhiteKing());
-//
-//		assertEquals(15.0, board.caculcatePoint(Piece.Color.BLACK), 0.01);
-//		assertEquals(7.0, board.caculcatePoint(Piece.Color.WHITE), 0.01);
-//
-//		System.out.println(board.showBoard());
+		board.initializeEmpty();
+
+		addPiece("b6", Pawn.createBlack(new Position("b6")));
+		addPiece("e6", Queen.createBlack(new Position("e6")));
+		addPiece("b8", King.createBlack(new Position("b8")));
+		addPiece("c8", Rook.createBlack(new Position("c8")));
+
+		addPiece("f2", Pawn.createWhite(new Position("f2")));
+		addPiece("g2", Pawn.createWhite(new Position("g2")));
+		addPiece("e1", Rook.createWhite(new Position("e1")));
+		addPiece("f1", King.createWhite(new Position("f1")));
+
+		assertEquals(15.0, board.caculcatePoint(Piece.Color.BLACK), 0.01);
+		assertEquals(7.0, board.caculcatePoint(Piece.Color.WHITE), 0.01);
+
+		System.out.println(board.showBoard());
+	}
+	@Test
+	public void moveBishopTest() {
+		board.initializeEmpty();
+		addPiece("c6", Bishop.createBlack(new Position("c6")));
+		addPiece("b7", Queen.createBlack(new Position("b7")));
+		addPiece("e4", King.createWhite(new Position("e4")));
+		Bishop bishop = (Bishop)board.findPiece(new Position("c6"));
+		bishop.calculatePossibilityPosition(board);
+		System.out.println(bishop.getPosition().getX() + " : " + bishop.getPosition().getY());
+		System.out.println("bishop move test");
+		System.out.println(board.showBoard());
+		
 	}
 //	@Test
 //	public void calculatePawnExceptionPoint() {
@@ -114,9 +130,9 @@ public class ChaseBoardTest {
 //		assertEquals(19.5, board.caculcatePoint(Piece.Color.WHITE), 0.01);
 //	}
 //	
-//	private void addPiece(String position, Piece piece) {
-//		board.move(position, piece);
-//	}
+	private void addPiece(String position, Piece piece) {
+		board.move(position, piece);
+	}
 //	
 //	 @Test
 //	    public void moveTest() throws Exception {

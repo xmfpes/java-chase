@@ -1,15 +1,17 @@
 package piece;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import chess.ChessBoard;
 import chess.Position;
 
 public class Piece {
 	private Color color;
 	private Type type;
 	private Position position;
-	private List<Position> possibilityPosition;
-	private List<Direction> moveDirection;
+	protected List<Position> possibilityPosition;
+	protected List<Direction> moveDirection;
 
 	public enum Color {
 		WHITE('w'), BLACK('b'), NOCOLOR('b');
@@ -88,7 +90,15 @@ public class Piece {
 
 		return direction;
 	}
-
+	
+	public void calculatePossibilityPosition(ChessBoard board) {
+		
+	}
+	
+	public void getMovePosition(ChessBoard board, Position position, Direction direction) {
+		
+	}
+	
 	protected boolean isSameTeam(Piece target) {
 		if (isWhite() && target.isWhite()) {
 			return true;
@@ -132,6 +142,7 @@ public class Piece {
 		this.type = type;
 		this.position = position;
 		this.moveDirection = directions;
+		this.possibilityPosition = new ArrayList<Position>();
 	}
 
 	public Position getPosition() {
@@ -148,6 +159,14 @@ public class Piece {
 
 	public boolean isWhite() {
 		return this.color.equals(Color.WHITE);
+	}
+	
+	public List<Position> getPossibilityPosition() {
+		return possibilityPosition;
+	}
+
+	public void setPossibilityPosition(List<Position> possibilityPosition) {
+		this.possibilityPosition = possibilityPosition;
 	}
 
 	@Override

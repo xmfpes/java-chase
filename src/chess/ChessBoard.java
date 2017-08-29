@@ -72,8 +72,12 @@ public class ChessBoard {
 		return chessBoard.get(row).findPiece(col);
 	}
 	
-	Piece findPiece(Position p) {
+	public Piece findPiece(Position p) {
         return findRank(p.getY()).getIndexPiece(p.getX());
+    }
+	
+	public Piece findPiece(int x, int y) {
+        return findRank(y).getIndexPiece(x);
     }
 	
 	public Rank findRank(int row) {
