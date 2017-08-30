@@ -79,25 +79,65 @@ public class Piece {
 
 	public Direction verifyMovePosition(Piece target) {
 		if (isSameTeam(target)) {
-			throw new InvalidMovePositionException(target + " 위치는 이동할 수 없는 위치입니다.");
+			throw new InvalidPositionException(target + " 위치는 이동할 수 없는 위치입니다.");
 		}
 		
 		Direction direction = position.direction(target.position);
 		
 		if (!moveDirection.contains(direction)) {
-			throw new InvalidMovePositionException(target + " 위치는 이동할 수 없는 위치입니다.");
+			throw new InvalidPositionException(target + " 위치는 이동할 수 없는 위치입니다.");
 		}
 
 		return direction;
 	}
 	
-	public void calculatePossibilityPosition(ChessBoard board) {
-		
+	public void getLimitedDistancePiecePossibilityPosition(ChessBoard board) {
+		for(int i=0; i<this.moveDirection.size(); i++) {
+			getLimitedDistancePieceMovePosition(board, this.getPosition(), this.moveDirection.get(i));
+		}
 	}
 	
-	public void getMovePosition(ChessBoard board, Position position, Direction direction) {
+	protected void getLimitedDistancePieceMovePosition(ChessBoard board, Position position, Direction direction) {
+		int myX = position.getX();
+		int myY = position.getY();
 		
+		int x = direction.getXDegree();
+		int y = direction.getYDegree();
+		
+		int moveX = myX + x;
+		int moveY = myY + y;
+		
+		if(!(moveX< 0 || moveY >= 8 || moveY < 0 || moveX >= 8) && !this.isSameTeam(board.findPiece(moveX, moveY))) {
+			System.out.println("x : " + moveX + " y : " + moveY);
+			this.possibilityPosition.add(new Position(moveX, moveY));
+		}
 	}
+	
+	public void getUnlimitedDistancePiecePossibilityPosition(ChessBoard board) {
+	    	for(int i=0; i<this.moveDirection.size(); i++) {
+	    		getUnlimitedDistancePieceMovePosition(board, this.getPosition(), this.moveDirection.get(i));
+	    	}
+    }
+  
+	protected void getUnlimitedDistancePieceMovePosition(ChessBoard board, Position position, Direction direction) {
+    		int myX = position.getX();
+    		int myY = position.getY();
+    		
+    		int x = direction.getXDegree();
+    		int y = direction.getYDegree();
+    		
+    		int moveX = myX + x;
+    		int moveY = myY + y;
+    		
+    		if(!(moveX< 0 || moveY >= 8 || moveY < 0 || moveX >= 8) && !this.isSameTeam(board.findPiece(moveX, moveY))) {
+    			System.out.println("x : " + moveX + " y : " + moveY);
+    			this.possibilityPosition.add(new Position(moveX, moveY));
+    			if(!(board.findPiece(moveX, moveY).getType() == Piece.Type.NO_PIECE))
+    				return;
+    			getUnlimitedDistancePieceMovePosition(board, new Position(moveX, moveY), direction);
+    		}
+    		
+    }
 	
 	protected boolean isSameTeam(Piece target) {
 		if (isWhite() && target.isWhite()) {

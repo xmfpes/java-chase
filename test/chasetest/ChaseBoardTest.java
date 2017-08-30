@@ -9,7 +9,9 @@ import org.junit.Test;
 import chess.ChessBoard;
 import chess.Position;
 import piece.Bishop;
+import piece.InvalidPositionException;
 import piece.King;
+import piece.Knight;
 import piece.Pawn;
 import piece.Piece;
 import piece.Queen;
@@ -96,12 +98,37 @@ public class ChaseBoardTest {
 		addPiece("c6", Bishop.createBlack(new Position("c6")));
 		addPiece("b7", Queen.createBlack(new Position("b7")));
 		addPiece("e4", King.createWhite(new Position("e4")));
-		Bishop bishop = (Bishop)board.findPiece(new Position("c6"));
-		bishop.calculatePossibilityPosition(board);
+		addPiece("e2", Rook.createWhite(new Position("e2")));
+		addPiece("b4", Knight.createWhite(new Position("b4")));
+		
+		Piece bishop = (Bishop)board.findPiece(new Position("c6"));
+		Piece rook = board.findPiece(new Position("e2"));
+		Piece knight = board.findPiece(new Position("b4"));
+		Piece king = board.findPiece(new Position("e4"));
+		bishop.getUnlimitedDistancePiecePossibilityPosition(board);
 		System.out.println(bishop.getPosition().getX() + " : " + bishop.getPosition().getY());
+		System.out.println();
+		rook.getUnlimitedDistancePiecePossibilityPosition(board);
+		System.out.println();
+		knight.getLimitedDistancePiecePossibilityPosition(board);
+		System.out.println();
+		king.getLimitedDistancePiecePossibilityPosition(board);
 		System.out.println("bishop move test");
 		System.out.println(board.showBoard());
 		
+	}
+	
+	@Test
+	public void trycatch() throws Exception{
+		try {
+			new Position(null);
+		} catch(InvalidPositionException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	@Test(expected = InvalidPositionException.class)
+	public void create_isNull() throws Exception{
+		new Position(null);
 	}
 //	@Test
 //	public void calculatePawnExceptionPoint() {
