@@ -100,6 +100,7 @@ public class Piece {
 	}
 	
 	public void setPossibilityPosition(ChessBoard board, Piece myPiece) {
+		this.possibilityPosition = new ArrayList<Position>();
 		movingStrategy.setPossibilityPosition(board, myPiece);
 	}
 	

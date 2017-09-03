@@ -8,7 +8,7 @@ import move.PawnMovingStrategy;
 
 public class Pawn extends Piece {
 
-	private boolean firstMove = false;
+	private boolean firstMove = true;
 
 	private Pawn(Color color, Position position, List<Direction> direction) {
 		super(color, Type.PAWN, position, Direction.blackPawnDirection(), new PawnMovingStrategy());
@@ -21,4 +21,14 @@ public class Pawn extends Piece {
 	public static Pawn createBlack(Position position) {
 		return new Pawn(Color.BLACK, position, Direction.blackPawnDirection());
 	}
+
+	public boolean isFirstMove() {
+		return firstMove;
+	}
+
+	public void setFirstMove(boolean firstMove) {
+		this.firstMove = firstMove;
+	}
+	
+	
 }
