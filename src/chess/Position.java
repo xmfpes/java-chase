@@ -1,7 +1,6 @@
 package chess;
 
 import exception.InvalidPositionException;
-import move.Direction;
 
 public class Position {
 	private int x;
@@ -51,7 +50,7 @@ public class Position {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

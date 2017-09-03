@@ -1,15 +1,10 @@
 package chess;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import piece.Blank;
 import piece.Piece;
-import piece.Piece.Color;
 import util.StringUtils;
 
 public class ChessBoard {
@@ -88,11 +83,6 @@ public class ChessBoard {
 		findRank(position.getY()).setPiece(position.getX(), piece);
 	}
 	
-	public void move(String position, Piece piece) {
-		piece.setPosition(new Position(position));
-		updateRank(piece);
-	}
-	
 	public void move(String beforeposition, String afterPosition) {
 		Position before = new Position(beforeposition);
 		Piece piece = findPiece(before);
@@ -103,9 +93,10 @@ public class ChessBoard {
 	
 	public double caculcatePoint(Piece.Color color) {
 		double pointSum = 0;
+		pawnCheckList = new PawnCheck();
 		for(int i=0; i<chessBoard.size(); i++) {
 			pointSum += chessBoard.get(i).getRankPoint(color);
-			pawnCheckList.updateCheckList(color, chessBoard.get(i).getPawnCheckList(color));
+			pawnCheckList.updateCheckList(color, findRank(i).getPawnCheckList(color));
 		}
 		pointSum -= calculatePawnExceptionPoint(color);
 		return pointSum;

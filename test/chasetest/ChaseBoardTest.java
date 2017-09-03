@@ -56,9 +56,9 @@ public class ChaseBoardTest {
 		String position1 = "b5";
 		String position2 = "b8";
 		Piece piece = King.createBlack(new Position(position1));
-		board.move("b5", piece);
+//		board.move("b5", piece);
 		Piece piece2 = Queen.createWhite(new Position(position1));
-		board.move("b8", piece2);
+//		board.move("b8", piece2);
 
 		assertEquals(piece, board.findPiece(position1));
 		
@@ -170,7 +170,7 @@ public class ChaseBoardTest {
 //	}
 //	
 	private void addPiece(String position, Piece piece) {
-		board.move(position, piece);
+//		board.move(position, piece);
 	}
 //	
 //	 @Test

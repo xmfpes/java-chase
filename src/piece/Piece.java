@@ -86,6 +86,7 @@ public class Piece {
 	}
 
 	public boolean verifyMovePosition(Piece target) {
+		
 		if (isSameTeam(target)) {
 			throw new InvalidPositionException(target + " 위치는 이동할 수 없는 위치입니다.");
 		}

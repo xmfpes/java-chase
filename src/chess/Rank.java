@@ -1,7 +1,6 @@
 package chess;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import piece.Bishop;
@@ -12,7 +11,6 @@ import piece.Pawn;
 import piece.Piece;
 import piece.Queen;
 import piece.Rook;
-import piece.Piece.Color;
 
 public class Rank {
 	private List<Piece> rank;
@@ -116,6 +114,7 @@ public class Rank {
 			if(rank.get(i).getType() == Piece.Type.PAWN && rank.get(i).getColor() == color) {
 				check[i] += 1;
 			}
+			System.out.println(check[i]);
 		}
 		return check;
 	}

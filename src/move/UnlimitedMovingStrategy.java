@@ -6,7 +6,6 @@ import java.util.List;
 import chess.ChessBoard;
 import chess.Position;
 import piece.Piece;
-import piece.Piece.Type;
 
 public class UnlimitedMovingStrategy implements MovingStrategy {
 
