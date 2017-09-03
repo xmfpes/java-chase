@@ -36,7 +36,6 @@ public class ChessBoard {
 	}
 	
 	public void initializeEmpty() {
-		List<Piece> blankList = new ArrayList<Piece>();
 		for(int i=0; i<8; i++) {
 			Integer temp = 1 + i;
 			chessBoard.add(Rank.createBlankRank(temp.toString()));

@@ -16,10 +16,9 @@ import piece.Piece.Color;
 
 public class Rank {
 	private List<Piece> rank;
-	private List<Integer> checkPawn;
+	
 	public Rank() {
 		rank = new ArrayList<Piece>();
-		checkPawn = new ArrayList<Integer>();
 	}
 	public Rank(List<Piece> rank) {
 		this.rank = rank;

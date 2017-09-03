@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import chess.ChessBoard;
 import chess.Position;
+import exception.InvalidPositionException;
 import piece.Bishop;
-import piece.InvalidPositionException;
 import piece.King;
 import piece.Knight;
 import piece.Pawn;
@@ -62,13 +62,21 @@ public class ChaseBoardTest {
 
 		assertEquals(piece, board.findPiece(position1));
 		
+		System.out.println("퀸 이동 테스트");
+		piece2.setPossibilityPosition(board, piece2);
+		System.out.println("move move");
+		for(int i=0; i<piece2.getPossibilityPosition().size(); i++) {
+			System.out.println(piece2.getPossibilityPosition().get(i).getX() + ", " + piece2.getPossibilityPosition().get(i).getY());
+		}
+		System.out.println();
+		System.out.println("king : " + piece.getPosition().getX() + "," + piece.getPosition().getY());
+		System.out.println("queen : "  + piece2.getPosition().getX() +", " + piece2.getPosition().getY());
+		System.out.println("이동 노");
 		System.out.println(board.showBoard());
+		board.move(position2, position1);
+		assertEquals(piece2, board.findPiece(new Position("b5")));
 		
-		board.move(position1, position2);
-		
-		System.out.println(board.showBoard());
-		
-		assertEquals(7, piece.getPosition().getY());
+		assertEquals(4, piece.getPosition().getY());
 		assertEquals(1, piece.getPosition().getX());
 	}
 
@@ -105,14 +113,14 @@ public class ChaseBoardTest {
 		Piece rook = board.findPiece(new Position("e2"));
 		Piece knight = board.findPiece(new Position("b4"));
 		Piece king = board.findPiece(new Position("e4"));
-		bishop.getUnlimitedDistancePiecePossibilityPosition(board);
+		bishop.setPossibilityPosition(board, bishop);
 		System.out.println(bishop.getPosition().getX() + " : " + bishop.getPosition().getY());
 		System.out.println();
-		rook.getUnlimitedDistancePiecePossibilityPosition(board);
+		rook.setPossibilityPosition(board, rook);
 		System.out.println();
-		knight.getLimitedDistancePiecePossibilityPosition(board);
+		knight.setPossibilityPosition(board, knight);
 		System.out.println();
-		king.getLimitedDistancePiecePossibilityPosition(board);
+		king.setPossibilityPosition(board, king);
 		System.out.println("bishop move test");
 		System.out.println(board.showBoard());
 		
