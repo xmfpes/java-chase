@@ -3,15 +3,17 @@ package piece;
 import java.util.List;
 
 import chess.Position;
+import exception.InvalidPositionException;
 import move.Direction;
 import move.PawnMovingStrategy;
 
 public class Pawn extends Piece {
 
-	private boolean firstMove = true;
+	private boolean firstMove;
 
 	private Pawn(Color color, Position position, List<Direction> direction) {
-		super(color, Type.PAWN, position, Direction.blackPawnDirection(), new PawnMovingStrategy());
+		super(color, Type.PAWN, position, direction, new PawnMovingStrategy());
+		this.firstMove = true;
 	}
 
 	public static Pawn createWhite(Position position) {
@@ -21,7 +23,18 @@ public class Pawn extends Piece {
 	public static Pawn createBlack(Position position) {
 		return new Pawn(Color.BLACK, position, Direction.blackPawnDirection());
 	}
-
+	
+	@Override
+	public void move(Piece target) {
+		if(verifyMovePosition(target)) {
+			this.position = target.getPosition();
+			this.firstMove = false;
+			return;
+		}
+		
+		throw new InvalidPositionException(target + "위치로는 이동이 불가능합니다.");
+	}
+	
 	public boolean isFirstMove() {
 		return firstMove;
 	}
@@ -29,6 +42,4 @@ public class Pawn extends Piece {
 	public void setFirstMove(boolean firstMove) {
 		this.firstMove = firstMove;
 	}
-	
-	
 }
