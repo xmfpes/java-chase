@@ -6,13 +6,18 @@ import move.Direction;
 public class Position {
 	private int x;
 	private int y;
+	private String position;
 	
 	public Position(int x, int y) {
 		this.x = x;
 		this.y = y;
+		Character xString = (char)(x + 'a');
+		Character yString = (char)(y + '0' + 1);
+		this.position = xString.toString() + yString.toString();
 	}
 	
 	public Position(String position) {
+		this.position = position;
 		if(position == null) {
 			throw new InvalidPositionException("위치 값이 null이 될 수 없습니다.");
 		}
@@ -38,10 +43,13 @@ public class Position {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	public String getPosition() {
+		return position;
+	}
 
-	public Direction direction(Position position) {
-		// TODO Auto-generated method stub
-		return null;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	@Override
