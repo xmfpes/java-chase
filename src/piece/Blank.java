@@ -1,7 +1,5 @@
 package piece;
 
-import chess.Position;
-
 public class Blank extends Piece{
 
 	private Blank(Position position) {

@@ -1,7 +1,5 @@
 package piece;
 
-import chess.Position;
-import move.Direction;
 import move.LimitedMovingStrategy;
 
 public class Knight extends Piece{

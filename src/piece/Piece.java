@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chess.ChessBoard;
-import chess.Position;
 import exception.InvalidPositionException;
-import move.Direction;
 import move.MovingStrategy;
 
 public class Piece {

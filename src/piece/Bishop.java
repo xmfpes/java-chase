@@ -1,7 +1,5 @@
 package piece;
 
-import chess.Position;
-import move.Direction;
 import move.UnlimitedMovingStrategy;
 
 public class Bishop extends Piece{

@@ -5,6 +5,7 @@ import java.util.List;
 
 import piece.Blank;
 import piece.Piece;
+import piece.Position;
 import util.StringUtils;
 
 public class ChessBoard {

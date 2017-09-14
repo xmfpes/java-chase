@@ -1,4 +1,4 @@
-package move;
+package piece;
 
 import java.util.Arrays;
 import java.util.List;

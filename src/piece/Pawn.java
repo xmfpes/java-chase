@@ -2,9 +2,7 @@ package piece;
 
 import java.util.List;
 
-import chess.Position;
 import exception.InvalidPositionException;
-import move.Direction;
 import move.PawnMovingStrategy;
 
 public class Pawn extends Piece {

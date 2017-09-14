@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import chess.ChessBoard;
-import chess.Position;
 import exception.InvalidPositionException;
 import piece.Bishop;
 import piece.King;
 import piece.Knight;
 import piece.Pawn;
 import piece.Piece;
+import piece.Position;
 import piece.Queen;
 import piece.Rook;
 

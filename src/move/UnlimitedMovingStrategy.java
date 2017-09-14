@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chess.ChessBoard;
-import chess.Position;
+import piece.Direction;
 import piece.Piece;
+import piece.Position;
 
 public class UnlimitedMovingStrategy implements MovingStrategy {
 

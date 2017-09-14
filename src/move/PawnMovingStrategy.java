@@ -3,9 +3,10 @@ package move;
 import java.util.List;
 
 import chess.ChessBoard;
-import chess.Position;
+import piece.Direction;
 import piece.Pawn;
 import piece.Piece;
+import piece.Position;
 
 public class PawnMovingStrategy implements MovingStrategy {
 
